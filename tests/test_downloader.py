@@ -1,6 +1,5 @@
 import unittest
 import os
-import codecs
 import rates.downloader
 
 class DownloaderTests(unittest.TestCase):

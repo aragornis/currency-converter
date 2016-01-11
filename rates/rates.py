@@ -6,8 +6,11 @@ class Rates:
         self.__db.create('currency', 'rate', mode="override" if erase_db else "open")
         self.__db.create_index('currency')
 
+
     def setRate(self, currency, rate):
         """ Persist a currency's exchange rate. """
+        assert rate > 0.0
+
         records = self.__db._currency[currency]
 
         if len(records) > 0:
@@ -19,7 +22,7 @@ class Rates:
         self.__db.commit()
 
     def getRate(self, currency):
-        """ Get the exchange rate for the provided currency or None if it is not found. """
+        """ Get the exchange rate to EUR for the provided currency or None if it is not found. """
         records = self.__db._currency[currency]
         return records[0]['rate'] if len(records) > 0 else None
 

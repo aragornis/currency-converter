@@ -9,6 +9,8 @@
 			<Cube currency='USD' rate='1.0888'/>
 			<Cube currency='JPY' rate='128.33'/>
 			<Cube currency='bgn' rate='1.9558'/>
+			<Cube currency='3ry' rate='1.9558'/>
+			<Cube currency='TRY' rate='rtef'/>
 		</Cube>
 	</Cube>
 </gesmes:Envelope>

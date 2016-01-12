@@ -11,10 +11,10 @@ class Converter:
         euro_to_target_currency_rate = self.__rates.getRate(target_currency) if target_currency != 'EUR' else '1.00'
 
         if euro_to_origin_currency_rate is None:
-            raise ValueError("Origin currency %s is not supporter" % origin_currency)
+            raise ValueError("Origin currency %s is not supported" % origin_currency)
 
         if euro_to_target_currency_rate is None:
-            raise ValueError("Target currency %s is invalid" % target_currency)
+            raise ValueError("Target currency %s is not supported" % target_currency)
 
         return Decimal(value) * Decimal(euro_to_target_currency_rate) / Decimal(euro_to_origin_currency_rate)
 

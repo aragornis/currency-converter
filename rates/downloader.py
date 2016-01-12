@@ -6,7 +6,7 @@ def getExchangeRates(url = None):
 
     root = ElementTree.parse(url if url is not None else defaultDownloader()).getroot()
     for entry in root.findall('def:Cube/def:Cube/def:Cube', ns):
-        yield entry.get('currency'), float(entry.get('rate'))
+        yield entry.get('currency').upper(), float(entry.get('rate'))
 
 def defaultDownloader():
     return urlopen('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')

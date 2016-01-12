@@ -6,7 +6,6 @@ class Rates:
         self.__db.create('currency', 'rate', mode="override" if erase_db else "open")
         self.__db.create_index('currency')
 
-
     def setRate(self, currency, rate):
         """ Persist a currency's exchange rate. """
         assert rate > 0.0

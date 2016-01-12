@@ -8,6 +8,6 @@ def getExchangeRates(url = None):
     for entry in root.findall('def:Cube/def:Cube/def:Cube', ns):
         yield entry.get('currency'), float(entry.get('rate'))
 
-def defaultDownloader(self):
+def defaultDownloader():
     return urlopen('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')
 

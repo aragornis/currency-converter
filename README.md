@@ -2,6 +2,7 @@
 
 ## CLI
 ```
+python fetcher.py [db_file] # Fetches exchange rate from the internet and store them in provided file
 ```
 
 ## How to run tests
@@ -14,6 +15,7 @@ python -m unittest discover
 
 ```
 pip install -r requirements.txt
+python fetcher.py rates.pdl
 ```
 
 ## TODO

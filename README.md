@@ -21,3 +21,6 @@ python server.py rates.pdl
 ```
 
 ## TODO
+
+* Introduce an actual logging system
+* Use a clean CLI parser

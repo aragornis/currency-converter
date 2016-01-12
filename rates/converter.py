@@ -6,7 +6,9 @@ class Converter:
         self.__rates = rates
 
     def convert(self, origin_currency, target_currency, value):
-        """ Persist a currency's exchange rate. """
+        """ Perform conversion of a value from origin_currency to target_currency.
+            Return a full-precision Decimal in case of success or raise a ValueError if any of the currencies is not known.
+        """
         euro_to_origin_currency_rate = self.__rates.getRate(origin_currency) if origin_currency != 'EUR' else '1.00'
         euro_to_target_currency_rate = self.__rates.getRate(target_currency) if target_currency != 'EUR' else '1.00'
 
@@ -19,6 +21,9 @@ class Converter:
         return Decimal(value) * Decimal(euro_to_target_currency_rate) / Decimal(euro_to_origin_currency_rate)
 
     def convert_and_round(self, origin_currency, target_currency, value):
+        """ Perform conversion of a value from origin_currency to target_currency.
+            Return a Decimal rounded to two decimals in case of success or raise a ValueError if any of the currencies is not known.
+        """
         return self.convert(origin_currency, target_currency, value).quantize(Decimal('1.00'))
 
 

@@ -1,6 +1,8 @@
 from pydblite import Base
 
 class Rates:
+    """ Persistence layer for exchange rates. """
+
     def __init__(self, filename, erase_db):
         self.__db = Base(filename)
         self.__db.create('currency', 'rate', mode="override" if erase_db else "open")
@@ -21,12 +23,14 @@ class Rates:
         self.__db.commit()
 
     def getRate(self, currency):
-        """ Get the exchange rate to EUR for the provided currency or None if it is not found. """
+        """ Get the exchange rate with EUR for the provided currency or None if it is not found.
+            An exchange rate for currency CUR is Value(EUR) / Value(CUR): 1 EUR = rate(CUR) CUR <=> 1/rate(CUR) EUR = 1 CUR.
+        """
         records = self.__db._currency[currency]
         return records[0]['rate'] if len(records) > 0 else None
 
     def getAllRates(self):
-        """ Get all known exchange rates. """
+        """ Get all known exchange rates as a dict. """
         return [(r['currency'], r['rate']) for r in self.__db]
 
     def getRatesCount(self):

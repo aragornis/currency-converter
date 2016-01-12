@@ -3,6 +3,9 @@ from xml.etree import ElementTree
 import re
 
 def getExchangeRates(url = None):
+    """ Read and parse an xml file provided as a stream and return a stream of (currency, rate) tuples.
+        If no input stream is provided, the default one provided by defaultDownloader() is used.
+    """
     ns = {'def': 'http://www.ecb.int/vocabulary/2002-08-01/eurofxref'}
 
     root = ElementTree.parse(url if url is not None else defaultDownloader()).getroot()

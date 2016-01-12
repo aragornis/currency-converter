@@ -10,13 +10,16 @@ import re
 server = Flask(__name__)
 
 def parse_query(query):
+    """ Parse received query and return tuple of currencies and value or None if the input is malformed. """
     if query is not None:
         match = re.match('^\s*(\d+(\\.\d+)?)\s+([a-zA-Z]+)\s+en\s+([a-zA-Z]+)\s*$', query)
         if match:
             return (Decimal(match.group(1)), match.group(3).upper(), match.group(4).upper())
 
-@server.route("/money/convert")
-def get_all_posts():
+@server.route("/money/convert", methods=['GET'])
+def convert():
+    """ Perform conversion of a value from one currency to another. """
+
     query = parse_query(request.args.get('query', None))
 
     if not query:
